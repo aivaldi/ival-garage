@@ -1,5 +1,5 @@
 import "../index.css";
-import React, { useState,useEffect } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import firebase from 'firebase'
 import { auth } from "../services/firebase";
@@ -9,7 +9,6 @@ import { useLoader } from "../components/loader";
 
 export const Signup = ()=>{
   
-  const [validated, setValidated] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [passwordMissmatch, setPasswordMissmatch] = useState(false);
   const history = useHistory();
@@ -24,9 +23,6 @@ export const Signup = ()=>{
       return;
     }
     
-   
-
-    setValidated(true);
     const {email, password, passwordConfirm, userName, userLastname} =  {  
       email: event.target.email.value, 
       password:event.target.password.value,
@@ -67,7 +63,9 @@ export const Signup = ()=>{
         )
     
   };
-
+  const backToLogin = () =>{
+    history.push("/login")
+  }
   return (
     <Loader>
     <div className="flex flex-col items-center justify-center bg-gray-300 h-screen select-none">
@@ -103,7 +101,7 @@ export const Signup = ()=>{
                     Registrarse
                   </button>
                   
-                  <p className="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Ya estas registrado?</p>
+                  <p onClick={backToLogin} className="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Ya estas registrado?</p>
                 </form>
               </div>
             </div>

@@ -1,0 +1,11 @@
+{
+    "items":[{
+        "description":"Tostadora SMEG color rosa",
+        "shortDescription":"Tostadora",
+        "price":"35000.00",
+        "img":"https://m.media-amazon.com/images/I/31PolC+ZeNL._AC_.jpg",
+        "category":"Cocina",
+        "id":"1",
+        "show":false
+    }]
+}

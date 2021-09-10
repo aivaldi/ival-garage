@@ -1,23 +1,34 @@
 import React from 'react'
+import { ItemInput } from './form/itemInput'
+import {ItemContainer} from './form/itemContainer'
 
-export const ItemFilter = ({categories,onFilter}) =>{
-
+export const ItemFilter = ({user, categories,onFilter, onSearch}) =>{
+    
     return (
 <>
-<div className="flex flex-col mt-8">
-                        <div className="flex flex-row items-center justify-between text-xs">
-                            <span className="font-bold">Categorias</span>
+                    <div className="flex flex-col sm:flex-col sm:mt-8 w-screen sm:w-full">
+                        
+                            <ItemContainer>
+                                <ItemInput label="Buscar" placeholder="Elemento a buscar" onChange={(e)=>onSearch(e.currentTarget.value)} >
+                                </ItemInput>
+                            </ItemContainer>
+                        
+                        <div className="flex border-solid  flex-row items-center px-1 py-3 mr-3 justify-between text-xs cursor-pointer" onClick={()=>onFilter(null)}>
+                            <span className={"font-bold"} >Categorias</span>
                             <span
-                                className="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full"
+                                className="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full "
                             >{categories.length}</span>
                         </div>
-                        <div className="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
-                            { categories.map( (e)=>{
+                        <div className="flex flex-row sm:flex-col pl-8" >
+                            { categories.map( (e, idx)=>{
                                     return (
-                                        <div
-                                            className="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
+                                        <div key={idx} onClick={()=>onFilter(e.name)}
+                                            className="h-8 cursor-pointer flex flex-row justify-between bg-blue-700 hover:bg-blue-800 leading-none ml-1 text-xs text-sm  sm:px-4 py-2  border rounded-full"
                                         >
-                                            <div onClick={()=>onFilter(e)} className="cursor-pointer  ml-2 text-sm font-semibold"> {e}</div>
+                                            <div className="cursor-pointer text-white sm:ml-2 sm:px-0 px-2 text-sm font-semibold" > {e.name}</div>
+                                            <span
+                                                className="flex items-center justify-center bg-gray-300  rounded-full text-black text-xs p-2 hidden sm:flex"
+                                            >{e.size}</span>
                                         </div>
                                     )    
                             } ) }
@@ -30,3 +41,5 @@ export const ItemFilter = ({categories,onFilter}) =>{
     )
 
 }
+
+export const MemorizedItemFilter = React.memo(ItemFilter);

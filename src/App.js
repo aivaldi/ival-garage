@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect, BrowserRouter  } from 'react-router-dom';
-import { Signup, Login, Main } from "./pages/pages";
+import { Admin, Login, Main } from "./pages/pages";
 import "./services/firebase"
 import firebase from 'firebase';
 import { useLoader } from './components/loader';
@@ -25,14 +25,12 @@ const PrivateRoute = ({component:Component,...rest}) => {
 
 
 const PublicRoute = ({component:Component,exact, path, ...rest}) => {
-  const user = firebase.auth().currentUser;
 
   return (
     <Route  { ...{exact, path}}
       render = { (props)=>{
-      return !user? <Component { ...{...props, ...rest}}  />:
-        <Redirect to={ { pathname:'/main'} }></Redirect>
-      } }
+        return <Component { ...{...props, ...rest}}  />
+      }}
     >     
     </Route>
   );
@@ -49,10 +47,9 @@ function App() {
     <Loader>
       <BrowserRouter >
           <Switch>
-            <PublicRoute exact path="/" component={Login}></PublicRoute>
+            <PublicRoute exact path="/" component={Main}></PublicRoute>
             <PublicRoute exact path="/login" component={Login} ></PublicRoute>
-            <PrivateRoute exact path="/main" component={Main}></PrivateRoute>
-            <PublicRoute exact path="/signup" component={Signup}></PublicRoute>
+            <PrivateRoute exact path="/admin" component={Admin}></PrivateRoute>
           </Switch>
       </BrowserRouter >
     </Loader>

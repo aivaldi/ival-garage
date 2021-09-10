@@ -54,11 +54,13 @@ export const Login = () =>{
                             </div>
                             }
                             <div className="text-center mt-6">
-                                <input type="submit" name="signin" id="signin" value="Entrar" className="p-3 rounded-lg bg-purple-600 outline-none text-white shadow w-32 justify-center focus:bg-purple-700 hover:bg-purple-500" />
+                                <button type="submit" name="signin" id="signin" className="p-3 rounded-lg bg-purple-600 outline-none text-white shadow w-32 justify-center focus:bg-purple-700 hover:bg-purple-500" >
+                                    Entrar
+                                </button>
                             </div>  
                             <div className="flex flex-wrap mt-6">
                                 <div className="w-1/2 text-left">
-                                    <a href="#" className="text-blue-900 text-xl"><small>Recuperar password</small></a>
+                                    
                                 </div>
                                 <div className="w-1/2 text-right">
                                     <a href="signup" className="text-blue-900 text-xl"><small>Registrarse</small></a>
