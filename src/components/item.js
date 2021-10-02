@@ -3,14 +3,14 @@ import { Button } from './button';
 export const Item = ({ elementKey,id,img,shortDescription, description,category, price,date, onDelete, onEdit }) =>{
 
 const [intValue,decimalValue] = (price && price!=="")? price.toString().split("."):"";
-const scapedInitialValue = useMemo(() => intValue.split('').reverse().reduce( (acc,val)=> (acc.replaceAll(".","").length%3===0)? `${val}.${acc}`:`${val}${acc}`) , [intValue])
+const scapedInitialValue = useMemo(() => intValue.split('').reverse().reduce( (acc,val)=> (acc.replaceAll(".","").length%3===0)? `${val}${acc}`:`${val}${acc}`) , [intValue])
 const formatter = useMemo(()=>new Intl.DateTimeFormat("es"),[]);
 const currentDate = useMemo(()=>new Date(date),[date]);
 
 return (
 
 <div className="each mb-10 m-2 shadow-lg border-gray-800 bg-gray-100 relative" style={ {overflowWrap: "break-word"}}>
-  <img className="w-full h-25" src={img?img:"/img/no-image.png"} alt="" style={{maxHeight:"180px"}}/>
+  <img className="w-full h-25" src={img?img:"/img/no-image.png"} alt="" />
   <div className="badge absolute top-0 right-0 bg-red-500 m-1 text-gray-200 p-1 px-2 text-xs font-bold rounded">Sale</div>
   <a rel="noopener noreferrer" target="_blank" href={`https://wa.me/5491166407694?text=Hola Micaela, estoy interesado en ${shortDescription}`}>
     <div className="info-box text-xs flex p-1 font-semibold text-gray-500 bg-gray-300">
@@ -25,7 +25,7 @@ return (
     <span className="description text-sm block py-2 border-gray-400 mb-2">{description}</span> 
     
     <p className="text-5xl font-bold text-center group-hover:text-white text-blue-500">
-                ${scapedInitialValue},<span className="text-3xl">{decimalValue || "00"}</span>
+                ${scapedInitialValue}.<span className="text-3xl">{decimalValue || "00"}</span>
     </p>
      
     
